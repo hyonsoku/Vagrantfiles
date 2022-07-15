@@ -1,0 +1,2 @@
+# Vagrantfiles
+Stock for Vagrantfiles
