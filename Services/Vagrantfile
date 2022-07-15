@@ -1,0 +1,28 @@
+Vagrant.configure("2") do |config|
+  config.vm.define "Chezmoi" do |chezmoi|
+    chezmoi.vm.box = "generic/alpine315"
+    chezmoi.vm.hostname = "chezmoi.local"
+    chezmoi.vm.network "private_network", ip: "192.168.11.2", virtualbox__intnet: true
+  end
+
+  config.vm.define "Gitea" do |gitea|
+    gitea.vm.box = "generic/alpine315"
+    gitea.vm.hostname = "gitea.local"
+    gitea.vm.network "forwarded_port", guest: 3000, host: 3000
+    gitea.vm.network "private_network", ip: "192.168.11.3", virtualbox__intnet: true
+  end
+
+  config.vm.define "GiteaDB" do |giteadb|
+    giteadb.vm.box = "centos/7"
+    giteadb.vm.hostname = "giteadb.local"
+    giteadb.vm.network "private_network", ip: "192.168.11.4", virtualbox__intnet: true
+    giteadb.vm.provision "shell", inline: <<-SHELL
+      sudo yum update
+      sudo yum localinstall -y http://dev.mysql.com/get/mysql80-community-release-el7-4.noarch.rpm
+      sudo yum install -y mysql-community-server
+      sudo systemctl enable mysqld.service
+      sudo systemctl start mysqld.service
+    SHELL
+  end
+
+end
