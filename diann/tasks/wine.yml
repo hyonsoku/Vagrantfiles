@@ -1,0 +1,17 @@
+- name: Install Desktop
+  apt:
+    name: ubuntu-desktop
+    state: latest
+- name: Enable 32 bit architecture
+  command: dpkg --add-architecture i386
+- name: Download and add the repository key
+  command: wget -nc -O /usr/share/keyrings/winehq-archive.key https://dl.winehq.org/wine-builds/winehq.key
+- name: Add the repository
+  command: wget -nc -P /etc/apt/sources.list.d/ https://dl.winehq.org/wine-builds/ubuntu/dists/focal/winehq-focal.sources
+- name: Update packages
+  apt:
+    update_cache: yes
+- name: Install WineHQ
+  apt:
+    name: winehq-stable
+    install_recommends: yes

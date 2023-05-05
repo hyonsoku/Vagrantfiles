@@ -1,0 +1,14 @@
+- hosts: default
+  become: yes
+  tasks:
+    - name: Update apt
+      apt:
+        #name: '*'
+        state: latest
+        update_cache: yes
+    - name: Setup community.general collection
+      import_tasks: tasks/community_general.yml
+    - name: Setup DIA-NN
+      import_tasks: tasks/diann.yml
+    - name: Setup WineHQ
+      import_tasks: tasks/wine.yml

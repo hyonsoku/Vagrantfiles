@@ -1,0 +1,20 @@
+- name: Fetch DIA-NN latest release info
+  community.general.github_release:
+    user: vdemichev
+    repo: DiaNN
+    action: latest_release
+  register: github_latest
+
+- name: Download latest DIA-NN
+  get_url:
+    url: "https://github.com/vdemichev/DiaNN/releases/download/{{ github_latest['tag'] }}/diann_{{ github_latest['tag'] }}.deb"
+    dest: /home/vagrant/diann_{{ github_latest['tag'] }}.deb
+
+- name: Install DIA-NN
+  apt:
+    deb: /home/vagrant/diann_{{ github_latest['tag'] }}.deb
+
+- name: Download DIA-NN.1_8.Setup.exe
+  get_url:
+    url: https://github.com/vdemichev/DiaNN/releases/download/{{ github_latest['tag'] }}/DIA-NN.1_8.Setup.exe
+    dest: /home/vagrant/DIA-NN.1_8.Setup.exe
