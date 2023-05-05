@@ -1,0 +1,17 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+  config.vm.box = "gusztavvargadr/windows-10"
+  config.vm.box_version = "2202.0.2304"
+
+  config.vm.provider "virtualbox" do |vb|
+     vb.gui = true
+     vb.name = "win10"
+     vb.memory = "4096"
+     vb.cpus = 2
+     vb.customize ["modifyvm", :id, "--clipboard", "bidirectional"]
+     vb.customize ["modifyvm", :id, "--vram", "128"]
+  end
+
+end 
