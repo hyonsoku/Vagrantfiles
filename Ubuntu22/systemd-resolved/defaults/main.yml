@@ -1,0 +1,6 @@
+---
+# defaults file for systemd-resolved
+systemd_resolved_dns:
+  - 8.8.8.8
+  - 8.8.4.4
+systemd_resolved_dns_stub_listener: yes

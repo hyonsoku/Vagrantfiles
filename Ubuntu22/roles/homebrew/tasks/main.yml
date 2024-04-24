@@ -1,0 +1,13 @@
+- name: Install Homebrew
+  shell: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+- name: Run shellenv
+  shell: /home/linuxbrew/.linuxbrew/bin/brew shellenv
+
+- name: Add Homebrew to PATH
+  shell: "'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> /home/{{ user }}/.profile"
+
+- name: Add Homebrew to ~/.profile
+  ansible.builtin.lineinfile:
+    path: /home/{{ user }}/.profile
+    line: 

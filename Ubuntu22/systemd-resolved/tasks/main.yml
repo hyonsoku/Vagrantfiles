@@ -1,0 +1,22 @@
+---
+# tasks file for systemd-resolved
+
+- name: Change Symbolic Link of /etc/resolv.conf from stub-resolv.conf to resolve.conf
+  file:
+    src: /run/systemd/resolve/resolv.conf
+    dest: /etc/resolv.conf
+    state: link
+
+- name: Configure systemd-resolved
+  template:
+    src: resolved.conf.j2
+    dest: /etc/systemd/resolved.conf
+    owner: root
+    group: root
+    mode: 0644
+  register: __systemd_resolved_configuration
+
+- name: Restart systemd-resolved
+  systemd:
+    name: systemd-resolved
+    state: restarted

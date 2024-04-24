@@ -1,0 +1,12 @@
+---
+- name: Install git and git-flow
+  apt:
+    name:
+      - git
+      - git-flow
+    state: present
+
+- name: Install git-delta
+  homebrew:
+    name: git-delta
+    state: present

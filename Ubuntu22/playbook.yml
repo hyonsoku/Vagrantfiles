@@ -1,0 +1,5 @@
+- name: "Provision by Ansible"
+  hosts: all
+
+  roles:
+    - homebrew

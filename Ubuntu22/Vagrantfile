@@ -14,7 +14,7 @@ Vagrant.configure("2") do |config|
     end
 
     # Network
-    config.vm.hostname = "gdkk-vb1.jp.genedata.com"
+    config.vm.hostname = "XXXXXXX"
     config.vm.network "private_network", ip: "192.168.56.2"
 
     # Provision

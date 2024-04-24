@@ -1,0 +1,36 @@
+[user]
+	email = username@example.com
+	name = username
+
+[core]
+	autocrlf = false
+	editor = vim
+	pager = delta
+
+[color]
+	branch = auto
+	diff = auto
+	status = auto
+	showbranch = auto
+	ui = true
+	
+[color "status"]
+	added = yellow
+	changed = green
+	untracked = cyan
+
+[delta]
+    navigate = true
+    light = false
+    side-by-side = true
+
+[diff]
+	colorMoved = default
+
+[interactive]
+    diffFilter = delta --color-only
+[add.interactive]
+    useBuiltin = false
+    
+[merge]
+	conflictstyle = diff3
