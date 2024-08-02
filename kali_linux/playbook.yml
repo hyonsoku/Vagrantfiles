@@ -1,0 +1,9 @@
+- hosts: default
+  become: yes
+  tasks:
+    - name: Update apt
+      ansible.builtin.apt:
+        name: '*'
+        state: latest
+        update_cache: yes
+        upgrade: dist
