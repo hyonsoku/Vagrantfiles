@@ -17,3 +17,9 @@ $ sudo openvpn *.ovpn
 ```shell
 $ gobuster -u {target_url} -w {dictionary_path} dir
 ```
+
+# mitmproxy
+
+```sh
+$ mitmproxy
+```
