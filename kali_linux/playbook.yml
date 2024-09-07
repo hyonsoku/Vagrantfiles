@@ -6,4 +6,13 @@
         name: '*'
         state: latest
         update_cache: yes
-        upgrade: dist
+
+    - name: Install httpie
+      ansible.builtin.apt:
+        name: httpie
+        state: present
+
+    - name: install gobuster
+      ansible.builtin.apt:
+        name: gobuster
+        state: present
