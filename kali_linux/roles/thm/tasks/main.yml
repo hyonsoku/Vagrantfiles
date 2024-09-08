@@ -1,0 +1,16 @@
+---
+- name: Update apt
+  ansible.builtin.apt:
+    name: '*'
+    state: latest
+    update_cache: yes
+
+- name: Install httpie
+  ansible.builtin.apt:
+    name: httpie
+    state: present
+
+- name: install gobuster
+  ansible.builtin.apt:
+    name: gobuster
+    state: present

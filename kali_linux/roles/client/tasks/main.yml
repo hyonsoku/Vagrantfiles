@@ -1,0 +1,29 @@
+---
+- name: Download WezTerm GPG key
+  ansible.builtin.get_url:
+    url: https://apt.fury.io/wez/gpg.key
+    dest: /tmp/wezterm-fury.gpg
+    mode: '0644'
+
+- name: Add WezTerm GPG key
+  ansible.builtin.apt_key:
+    file: /tmp/wezterm-fury.gpg
+    state: present
+
+- name: Add WezTerm repository
+  ansible.builtin.apt_repository:
+    repo: deb https://apt.fury.io/wez/ * *
+    state: present
+    filename: wezterm
+    update_cache: yes
+
+- name: Update apt
+  ansible.builtin.apt:
+    name: '*'
+    state: latest
+    update_cache: yes
+
+- name: Insatll Wezterm
+  ansible.builtin.apt:
+    name: wezterm
+    state: latest
